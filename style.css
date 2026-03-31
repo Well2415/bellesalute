@@ -1,0 +1,303 @@
+/* =========================================================================
+   BELLE SALUTE ESTÉTICA | DESIGN SYSTEM: SOFT LUXURY (Light & Elegant)
+   ========================================================================= */
+
+/* 1. SOFT LUXURY TOKENS */
+:root {
+  /* Palette: Pearl, Off-Black and Amethyst */
+  --clr-bg: #fcfcfc;        /* Fundo principal perolado */
+  --clr-surface: #ffffff;   /* Cartões e elementos elevados */
+  --clr-surface-alt: #f5f3f7; /* Fundo secundário (toque gelo/roxo) */
+  
+  --clr-text: #2a2a2a;      /* Texto Chumbo (Mais leve que o preto) */
+  --clr-text-muted: #666666;
+  --clr-text-light: #999999;
+  
+  --clr-primary: #9d4edd;
+  --clr-primary-light: #c77dff;
+  --clr-primary-dark: #6a2b99;
+  
+  --clr-border: #eaeaea;
+
+  /* Formas Orgânicas (Soft Curves) */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-pill: 999px;
+
+  /* Sombras Difusas (Elevação leve e macia) */
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 20px 50px rgba(157, 78, 221, 0.15); /* Brilho ametista ao pairar */
+
+  /* Espaçamento (Amplo e Resiliente) */
+  --sp-1: 0.5rem;   /* 8px */
+  --sp-2: 1rem;     /* 16px */
+  --sp-3: 1.5rem;   /* 24px */
+  --sp-4: 2rem;     /* 32px */
+  --sp-6: 3rem;     /* 48px */
+  --sp-8: 4rem;     /* 64px */
+  --sp-12: 6rem;    /* 96px */
+  --sp-section: 120px;
+
+  /* Typography */
+  --font-sans: 'Montserrat', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  
+  --text-xs: 0.75rem; 
+  --text-sm: 0.9rem;
+  --text-base: 1rem;
+  --text-lg: 1.15rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.75rem;
+  --text-4xl: 3.5rem;
+  --text-5xl: 4.5rem; /* Ajustado para não soarsar brutalista */
+  
+  --leading-tight: 1.1;
+  --leading-normal: 1.6;
+  --leading-loose: 1.8;
+  
+  --tracking-normal: 0em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.15em;
+
+  /* Animation Timings */
+  --transition-fast: 200ms ease;
+  --transition-smooth: 400ms cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-slow: 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  
+  --content-max-width: 1200px;
+}
+
+/* 2. BASE & RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; background-color: var(--clr-bg); }
+body {
+  font-family: var(--font-sans); color: var(--clr-text);
+  line-height: var(--leading-normal); -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; overflow-x: hidden;
+  position: relative;
+}
+
+img, svg { max-width: 100%; display: block; object-fit: cover; }
+a { text-decoration: none; color: inherit; transition: color var(--transition-smooth); }
+ul, ol { list-style: none; }
+button, input, select, textarea { font-family: inherit; }
+button { background: none; border: none; cursor: pointer; }
+
+::selection { background: var(--clr-primary-light); color: #fff; }
+
+/* 3. LAYOUT */
+.container { width: 100%; max-width: var(--content-max-width); margin: 0 auto; padding: 0 var(--sp-4); }
+.section { padding-top: var(--sp-section); padding-bottom: var(--sp-section); position: relative; }
+.section-sm { padding-top: var(--sp-8); padding-bottom: var(--sp-8); }
+.section-alt { background-color: var(--clr-surface-alt); }
+
+.flex { display: flex; }
+.grid { display: grid; }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: var(--sp-8); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: var(--sp-6); }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: var(--sp-2); }
+.gap-4 { gap: var(--sp-4); }
+
+/* 4. TYPOGRAPHY */
+.heading-eyebrow {
+  display: block; font-size: var(--text-xs); font-weight: 500; text-transform: uppercase;
+  letter-spacing: var(--tracking-wider); color: var(--clr-primary); margin-bottom: var(--sp-3);
+  font-family: var(--font-sans);
+}
+.heading-1 {
+  font-family: var(--font-serif); font-size: clamp(3rem, 6vw, var(--text-5xl));
+  font-weight: 400; line-height: var(--leading-tight); color: var(--clr-text);
+  margin-bottom: var(--sp-4);
+}
+.heading-1 em { font-style: italic; color: var(--clr-primary); font-weight: 300; }
+.heading-2 {
+  font-family: var(--font-serif); font-size: clamp(2rem, 4vw, var(--text-4xl));
+  font-weight: 400; line-height: var(--leading-tight); color: var(--clr-text); margin-bottom: var(--sp-6);
+}
+.heading-3 {
+  font-family: var(--font-serif); font-size: var(--text-2xl);
+  font-weight: 400; line-height: var(--leading-tight); color: var(--clr-text); margin-bottom: var(--sp-2);
+}
+.text-body-lg { font-size: var(--text-lg); color: var(--clr-text-muted); line-height: var(--leading-loose); margin-bottom: var(--sp-4); font-weight: 300; }
+.text-body { font-size: var(--text-base); color: var(--clr-text-muted); line-height: var(--leading-loose); margin-bottom: var(--sp-3); font-weight: 300; }
+.text-center { text-align: center; }
+.highlight { font-weight: 500; color: var(--clr-text); }
+
+/* 5. SOFT BUTTONS (Pill-shaped, elegant) */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
+  padding: 1rem 2.5rem; font-size: var(--text-sm); font-weight: 500; text-transform: uppercase;
+  letter-spacing: var(--tracking-wide); border-radius: var(--radius-pill);
+  transition: all var(--transition-smooth); border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--clr-primary); color: #fff; box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
+}
+.btn-primary:hover {
+  background: var(--clr-primary-dark); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(157, 78, 221, 0.3);
+}
+.btn-outline {
+  background: transparent; color: var(--clr-text); border-color: var(--clr-border);
+}
+.btn-outline:hover {
+  border-color: var(--clr-primary); color: var(--clr-primary); background: #fff;
+}
+.btn-ghost {
+  padding: 0; color: var(--clr-primary); font-weight: 500; text-transform: none; border-radius: 0;
+}
+.btn-ghost:hover { color: var(--clr-primary-dark); }
+.btn-ghost::after { content: '→'; margin-left: 6px; transition: transform var(--transition-fast); }
+.btn-ghost:hover::after { transform: translateX(5px); }
+
+/* 6. NAVBAR (Light & Airy) */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+  transition: all var(--transition-smooth); padding: var(--sp-4) 0; background: transparent;
+}
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+  padding: var(--sp-3) 0; box-shadow: var(--shadow-sm);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { display: flex; align-items: center; gap: var(--sp-2); }
+.nav-logo-img { height: 70px; border-radius: var(--radius-pill); transition: height var(--transition-smooth); }
+.navbar.scrolled .nav-logo-img { height: 48px; }
+.nav-links { display: flex; gap: var(--sp-6); align-items: center; }
+.nav-item { position: relative; font-size: var(--text-xs); font-weight: 500; text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--clr-text-muted); transition: color var(--transition-fast); }
+.nav-item::after { content: ''; position: absolute; bottom: -4px; right: 0; width: 0; height: 1px; background: var(--clr-primary); transition: width var(--transition-smooth); }
+.nav-item:hover { color: var(--clr-primary); }
+.nav-item:hover::after { width: 100%; left: 0; right: auto; }
+.hamburger { display: none; padding: var(--sp-1); }
+.hamburger span { display: block; width: 26px; height: 1.5px; background-color: var(--clr-text); margin-bottom: 5px; }
+
+/* 7. HERO (Paz e Luz) */
+.hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; position: relative; overflow: hidden; }
+/* Gradient Soft Orb no fundo branco */
+.hero::before { content: ''; position: absolute; right: -10%; top: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(199, 125, 255, 0.08) 0%, transparent 70%); border-radius: 50%; z-index: -1; }
+.hero-content { max-width: 600px; z-index: 10; padding-right: var(--sp-4); }
+.hero-actions { display: flex; gap: var(--sp-3); margin-top: var(--sp-6); align-items: center; }
+.hero-image { position: relative; z-index: 1; height: 600px; width: 100%; }
+/* Imagem curva feminina */
+.hero-image-wrap { width: 100%; height: 100%; border-radius: 200px 200px 24px 24px; overflow: hidden; box-shadow: var(--shadow-md); position: relative; border: 6px solid #fff; }
+.hero-cinematic { width: 100%; height: 100%; object-fit: cover; animation: cinPan 25s ease-in-out infinite alternate; will-change: transform; transform-origin: center center; }
+@keyframes cinPan {
+  0% { transform: scale(1.0); }
+  100% { transform: scale(1.15); }
+}
+.hero-badge { position: absolute; bottom: 40px; left: -30px; background: #fff; padding: var(--sp-3) var(--sp-4); border-radius: var(--radius-md); box-shadow: var(--shadow-md); display: flex; align-items: center; gap: var(--sp-3); }
+.hero-badge-icon { width: 48px; height: 48px; background: var(--clr-surface-alt); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--clr-primary); font-family: var(--font-serif); font-size: var(--text-2xl); }
+
+/* 8. ABOUT (A Cura pela Luz) */
+.about-image { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); height: 500px; }
+.about-stats { display: flex; gap: var(--sp-6); margin-top: var(--sp-6); border-top: 1px solid var(--clr-border); padding-top: var(--sp-6); }
+.stat-item .value { font-family: var(--font-serif); font-size: var(--text-4xl); color: var(--clr-primary); line-height: 1; display: block; margin-bottom: 4px; }
+.stat-item .label { font-size: var(--text-xs); color: var(--clr-text-muted); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+
+/* 9. SERVICES (Bandejas Elevadas + Parallax Support) */
+.section-header { text-align: center; max-width: 700px; margin: 0 auto var(--sp-12); }
+.service-card {
+  background: var(--clr-surface); border-radius: var(--radius-lg); padding: var(--sp-2);
+  box-shadow: var(--shadow-sm); transition: all var(--transition-smooth);
+  display: flex; flex-direction: column; height: 100%;
+}
+.service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+
+/* Parallax Wrapper */
+.service-img { width: 100%; height: 260px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--sp-4); position: relative; }
+.parallax-img { position: absolute; top: -15%; left: 0; width: 100%; height: 130%; object-fit: cover; will-change: transform; transition: filter var(--transition-smooth); transform: translateY(0); filter: brightness(1) saturate(1.1); }
+.service-card:hover .parallax-img { filter: brightness(1.1); transform: scale(1.03) !important; /* Scale effect on top of parallax */ }
+
+.service-content { padding: 0 var(--sp-3) var(--sp-4) var(--sp-3); flex: 1; display: flex; flex-direction: column; }
+.service-desc { flex: 1; margin-bottom: var(--sp-4); }
+
+/* 10. PROTOCOLS / FEATURES (Soft Grid) */
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-8); }
+.feature-box { background: var(--clr-surface); border-radius: var(--radius-lg); padding: var(--sp-8); text-align: center; box-shadow: var(--shadow-sm); }
+.feature-icon { width: 64px; height: 64px; background: rgba(199, 125, 255, 0.1); color: var(--clr-primary); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: var(--sp-4); }
+.feature-icon svg { width: 32px; height: 32px; }
+
+/* 11. TESTIMONIALS (Limpos e Arredondados) */
+.testimonial-card { background: var(--clr-bg); border: 1px solid var(--clr-border); border-radius: var(--radius-lg); padding: var(--sp-8); transition: box-shadow var(--transition-smooth); }
+.testimonial-card:hover { box-shadow: var(--shadow-sm); border-color: transparent; }
+.testimonial-quote { font-family: var(--font-serif); font-size: var(--text-xl); font-style: italic; color: var(--clr-text); line-height: var(--leading-loose); margin-bottom: var(--sp-6); }
+.testimonial-author { display: flex; align-items: center; gap: var(--sp-3); }
+.author-avatar { width: 50px; height: 50px; background: var(--clr-surface-alt); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: var(--text-xl); color: var(--clr-primary); }
+
+/* 12. CONTACT (Soft Form) */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: center; }
+.contact-form-box { background: var(--clr-surface); border-radius: var(--radius-lg); padding: var(--sp-8); box-shadow: var(--shadow-md); }
+.form-group { margin-bottom: var(--sp-4); }
+.form-label { display: block; font-size: var(--text-xs); text-transform: uppercase; font-weight: 500; color: var(--clr-text-muted); margin-bottom: 8px; letter-spacing: var(--tracking-wide); }
+.form-input, .form-select, .form-textarea {
+  width: 100%; background: var(--clr-surface-alt); border: 1px solid transparent; border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem; color: var(--clr-text); font-family: var(--font-sans); font-size: var(--text-base);
+  transition: all var(--transition-fast);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--clr-primary-light); background: var(--clr-surface); box-shadow: 0 4px 15px rgba(157,78,221,0.08); }
+.form-textarea { min-height: 120px; resize: vertical; }
+
+/* 13. FAQ ACCORDION (Desconstruindo Inseguranças) */
+.faq-wrap { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--clr-border); padding: var(--sp-4) 0; }
+.faq-question { display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: left; background: none; border: none; font-size: var(--text-lg); font-weight: 500; font-family: var(--font-serif); color: var(--clr-text); cursor: pointer; transition: color var(--transition-fast); }
+.faq-question:hover { color: var(--clr-primary); }
+.faq-icon { width: 24px; height: 24px; color: var(--clr-primary); transition: transform var(--transition-smooth); flex-shrink: 0; }
+.faq-item.active .faq-icon { transform: rotate(45deg); color: var(--clr-text-muted); }
+.faq-answer { height: 0; overflow: hidden; transition: height var(--transition-smooth); }
+.faq-answer-inner { padding: var(--sp-3) 0 var(--sp-2); font-size: var(--text-base); color: var(--clr-text-muted); line-height: var(--leading-loose); }
+
+/* 14. INSTAGRAM GRID (Ateliê ao Vivo) */
+.insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: var(--sp-8); }
+.insta-card { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--clr-border); }
+.insta-img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-slow); }
+.insta-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--transition-smooth); z-index: 2; }
+.insta-icon { color: #fff; display: flex; gap: var(--sp-2); align-items: center; font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500; transform: translateY(10px); transition: transform var(--transition-smooth); }
+.insta-card:hover .insta-img { transform: scale(1.08); }
+.insta-card:hover .insta-overlay { opacity: 1; }
+.insta-card:hover .insta-icon { transform: translateY(0); }
+
+/* 15. FOOTER */
+.footer { background: var(--clr-surface-alt); padding: var(--sp-12) 0 var(--sp-6) 0; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: var(--sp-8); margin-bottom: var(--sp-8); padding-bottom: var(--sp-8); border-bottom: 1px solid var(--clr-border); }
+.footer-col h4 { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--clr-text); margin-bottom: var(--sp-4); }
+.footer-links { display: flex; flex-direction: column; gap: var(--sp-3); }
+.footer-links a { font-size: var(--text-sm); color: var(--clr-text-muted); }
+.footer-links a:hover { color: var(--clr-primary); }
+.social-flex { display: flex; gap: var(--sp-2); margin-top: var(--sp-2); }
+.social-icon { width: 40px; height: 40px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--clr-text); box-shadow: var(--shadow-sm); transition: all var(--transition-fast); }
+.social-icon:hover { background: var(--clr-primary); color: #fff; transform: translateY(-3px); }
+
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: var(--text-xs); color: var(--clr-text-light); }
+
+/* 16. ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 800ms ease, transform 800ms cubic-bezier(0.16, 1, 0.3, 1); }
+.fade-up.is-visible { opacity: 1; transform: translateY(0); }
+
+/* 17. RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero { align-items: stretch; padding-top: 120px; }
+  .grid-cols-2 { grid-template-columns: 1fr; }
+  .grid-cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+  .hero-image { display: none; }
+  .insta-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: block; }
+  .grid-cols-3 { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: var(--sp-4); text-align: center; }
+  .about-stats { flex-direction: column; gap: var(--sp-4); }
+}

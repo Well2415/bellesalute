@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe – Belle Salute (Redesign)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      background: #f5f5f5;
+      color: #333;
+      font-size: 14px;
+    }
+
+    /* ── LEGEND BAR ── */
+    .legend-bar {
+      background: #333;
+      color: #fff;
+      padding: 10px 24px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+    }
+    .legend-bar strong { font-size: 14px; margin-right: 8px; }
+    .badge-reuse { background: #4CAF50; color: #fff; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
+    .badge-new   { background: #FF9800; color: #fff; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
+    .badge-fix   { background: #e53935; color: #fff; padding: 2px 8px; border-radius: 3px; font-weight: bold; }
+
+    /* ── WIREFRAME GLOBALS ── */
+    .wf-page { background: #fff; max-width: 1200px; margin: 0 auto; border: 2px solid #333; }
+
+    /* ── REUSE / NEW BADGE HELPER ── */
+    .tagged { position: relative; display: block; }
+    .tag {
+      position: absolute; top: 4px; right: 4px;
+      padding: 2px 7px; border-radius: 3px; font-size: 10px;
+      font-family: Arial, sans-serif; font-weight: bold; z-index: 10;
+      white-space: nowrap;
+    }
+    .tag-reuse { background: #4CAF50; color: #fff; }
+    .tag-new   { background: #FF9800; color: #fff; }
+    .tag-fix   { background: #e53935; color: #fff; }
+
+    /* ── NAV ── */
+    .wf-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 72px;
+      border-bottom: 2px solid #333;
+      background: #fff;
+    }
+    .wf-logo-area { display: flex; align-items: center; gap: 12px; }
+    .wf-logo-img {
+      width: 50px; height: 50px; border-radius: 50%;
+      border: 2px solid #333; background: #ccc;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: #666; text-align: center; overflow: hidden;
+    }
+    .wf-logo-text { font-size: 18px; font-weight: bold; }
+    .wf-nav-links { display: flex; gap: 24px; align-items: center; }
+    .wf-nav-link { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .wf-nav-cta {
+      padding: 8px 20px; border: 2px solid #333; background: #333; color: #fff;
+      font-size: 12px; font-weight: bold;
+    }
+
+    /* ── HERO ── */
+    .wf-hero {
+      min-height: 560px; background: #ccc; position: relative;
+      display: flex; align-items: center;
+      border-bottom: 2px solid #333; overflow: hidden;
+    }
+    .wf-hero-overlay {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(45deg,#bbb 0,#bbb 1px,#ccc 1px,#ccc 8px);
+      opacity: 0.4;
+    }
+    .wf-hero-img-placeholder {
+      position: absolute; inset: 0;
+      background: #aaa;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #666; font-style: italic;
+    }
+    .wf-hero-inner {
+      position: relative; z-index: 2;
+      padding: 0 64px; max-width: 700px;
+    }
+    .wf-eyebrow {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+      color: #555; margin-bottom: 12px; border-bottom: 1px solid #999; padding-bottom: 6px; display: inline-block;
+    }
+    .wf-h1 { font-size: 38px; line-height: 1.15; margin-bottom: 16px; font-style: italic; color: #222; }
+    .wf-hero-desc { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 28px; max-width: 480px; }
+    .wf-hero-btns { display: flex; gap: 12px; }
+    .wf-btn-primary {
+      padding: 14px 28px; background: #333; color: #fff;
+      font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border: 2px solid #333;
+    }
+    .wf-btn-outline {
+      padding: 14px 28px; background: transparent; color: #333;
+      font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border: 2px solid #333;
+    }
+    /* Stats bar – HORIZONTAL inside hero bottom */
+    .wf-hero-stats {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.92);
+      border-top: 2px dashed #333;
+      display: flex; justify-content: center; align-items: stretch;
+    }
+    .wf-stat {
+      flex: 1; max-width: 220px; padding: 20px 0; text-align: center;
+      border-right: 1px dashed #999;
+    }
+    .wf-stat:last-child { border-right: none; }
+    .wf-stat-num { font-size: 28px; font-weight: bold; display: block; }
+    .wf-stat-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #666; }
+
+    /* ── SECTION LABEL ── */
+    .wf-section-tag {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 3px;
+      color: #666; display: block; margin-bottom: 10px; border-left: 3px solid #333; padding-left: 8px;
+    }
+    .wf-section-h2 { font-size: 28px; margin-bottom: 12px; font-style: italic; }
+    .wf-section-sub { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 32px; }
+
+    /* ── SOBRE ── */
+    .wf-sobre { padding: 80px 64px; border-bottom: 2px solid #333; }
+    .wf-sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .wf-sobre-img {
+      background: #ccc; border: 2px solid #333; height: 420px; position: relative;
+      display: flex; align-items: center; justify-content: center; font-size: 13px; color: #666; font-style: italic;
+    }
+    .wf-sobre-badge {
+      position: absolute; bottom: -16px; right: -16px;
+      background: #fff; border: 2px solid #333; width: 110px; height: 110px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+    }
+    .wf-badge-num { font-size: 28px; font-weight: bold; line-height: 1; }
+    .wf-badge-txt { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #666; }
+    .wf-sobre-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0 28px; }
+    .wf-sobre-list li { font-size: 13px; display: flex; gap: 10px; align-items: flex-start; }
+    .wf-sobre-list li::before { content: '✦'; font-size: 12px; color: #666; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── SERVIÇOS – CONSISTENT GRID ── */
+    .wf-servicos { padding: 80px 64px; background: #f0f0f0; border-bottom: 2px solid #333; }
+    .wf-servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .wf-servico-card {
+      border: 2px solid #333; background: #fff; display: flex; flex-direction: column;
+      position: relative;
+    }
+    .wf-card-img {
+      height: 160px; background: #bbb; border-bottom: 2px solid #333;
+      display: flex; align-items: center; justify-content: center; font-style: italic; color: #666; font-size: 12px;
+    }
+    .wf-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .wf-card-icon { font-size: 18px; margin-bottom: 8px; text-align: center; color: #666; }
+    .wf-card-h3 { font-size: 16px; margin-bottom: 8px; font-style: italic; }
+    .wf-card-p { font-size: 12px; color: #555; line-height: 1.5; flex: 1; margin-bottom: 14px; }
+    .wf-card-link { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #333; }
+    .wf-servicos-more {
+      text-align: center; margin-top: 32px; padding: 20px;
+      border: 2px dashed #999; background: #f9f9f9; font-style: italic; color: #666; font-size: 13px;
+    }
+
+    /* ── DIFERENCIAIS – H3 FIX ── */
+    .wf-diferenciais { padding: 80px 64px; border-bottom: 2px solid #333; background: #eaeaea; }
+    .wf-dif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .wf-dif-item {
+      border: 2px solid #333; padding: 28px 20px; background: #fff; text-align: center;
+      border-top: 4px solid #333; position: relative;
+    }
+    .wf-dif-icon { font-size: 28px; margin-bottom: 12px; }
+    .wf-dif-h3 { font-size: 15px; font-style: italic; margin-bottom: 8px; }
+    .wf-dif-p { font-size: 12px; color: #555; line-height: 1.5; }
+
+    /* ── DEPOIMENTOS ── */
+    .wf-depoimentos { padding: 80px 64px; border-bottom: 2px solid #333; }
+    .wf-dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .wf-dep-card { border: 2px solid #333; padding: 28px 20px; background: #fff; display: flex; flex-direction: column; position: relative; }
+    .wf-dep-card.featured { border: 3px solid #333; background: #f0f0f0; }
+    .wf-stars { font-size: 16px; margin-bottom: 12px; letter-spacing: 2px; color: #666; }
+    .wf-dep-quote { font-size: 13px; font-style: italic; color: #444; line-height: 1.6; flex: 1; margin-bottom: 20px; }
+    .wf-dep-author { display: flex; align-items: center; gap: 12px; }
+    .wf-dep-avatar {
+      width: 44px; height: 44px; border-radius: 50%; border: 2px solid #333;
+      background: #ccc; display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: bold; color: #666; flex-shrink: 0;
+    }
+    .wf-dep-name { font-size: 12px; font-weight: bold; display: block; }
+    .wf-dep-service { font-size: 11px; color: #666; }
+
+    /* ── CONTATO – ACCESSIBLE FORM ── */
+    .wf-contato { padding: 80px 64px; background: #f0f0f0; border-bottom: 2px solid #333; }
+    .wf-contato-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .wf-contato-info h2 { font-size: 28px; font-style: italic; margin-bottom: 14px; }
+    .wf-contato-info p { font-size: 13px; color: #666; margin-bottom: 24px; }
+    .wf-info-list { display: flex; flex-direction: column; gap: 18px; margin-bottom: 28px; }
+    .wf-info-item { display: flex; gap: 14px; align-items: flex-start; font-size: 13px; }
+    .wf-info-icon { font-size: 20px; flex-shrink: 0; }
+    .wf-info-item strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+    .wf-info-item span { color: #555; }
+    .wf-btn-wa {
+      display: inline-flex; gap: 8px; align-items: center;
+      padding: 12px 24px; border: 2px solid #333; background: #ddd;
+      font-size: 13px; font-weight: bold;
+    }
+    /* FORM – with visible labels (accessibility fix) */
+    .wf-form { border: 2px solid #333; background: #fff; padding: 32px; }
+    .wf-form h3 { font-size: 20px; font-style: italic; margin-bottom: 24px; }
+    .wf-form-group { margin-bottom: 18px; }
+    .wf-label {
+      display: block; font-size: 11px; font-weight: bold; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 6px; color: #333;
+    }
+    .wf-label span.req { color: #c00; margin-left: 2px; }
+    .wf-input {
+      width: 100%; padding: 12px; border: 2px solid #333; background: #f9f9f9;
+      font-size: 13px; font-family: inherit;
+    }
+    .wf-select {
+      width: 100%; padding: 12px; border: 2px solid #333; background: #f9f9f9;
+      font-size: 13px; font-family: inherit;
+    }
+    .wf-form-note { font-size: 11px; color: #666; margin-top: 8px; font-style: italic; }
+    .wf-textarea {
+      width: 100%; padding: 12px; border: 2px solid #333; background: #f9f9f9;
+      font-size: 13px; font-family: inherit; height: 80px; resize: vertical;
+    }
+    .wf-btn-submit {
+      width: 100%; padding: 14px; background: #333; color: #fff;
+      font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+      border: 2px solid #333; cursor: pointer; margin-top: 8px;
+    }
+
+    /* ── FOOTER – RICH ── */
+    .wf-footer { padding: 48px 64px 24px; border-top: 2px solid #333; background: #fff; }
+    .wf-footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+    .wf-footer-brand p { font-size: 12px; color: #666; margin-top: 8px; line-height: 1.6; }
+    .wf-footer-col h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 6px; }
+    .wf-footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .wf-footer-col ul li { font-size: 12px; color: #555; }
+    .wf-footer-bottom {
+      border-top: 1px dashed #ccc; padding-top: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .wf-footer-bottom p { font-size: 11px; color: #999; }
+    .wf-social { display: flex; gap: 12px; }
+    .wf-social-icon {
+      width: 32px; height: 32px; border: 2px solid #333; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 12px; color: #333;
+    }
+
+    /* ── WA FLOAT ── */
+    .wf-wa-float {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 56px; height: 56px; border-radius: 50%; border: 2px solid #333;
+      background: #ddd; display: flex; align-items: center; justify-content: center;
+      font-size: 22px; z-index: 100;
+    }
+
+    /* ── FIX NOTE CALLOUT ── */
+    .fix-note {
+      position: absolute; bottom: 4px; left: 4px;
+      background: #ffe9e9; border: 1px solid #c00; color: #c00;
+      font-size: 9px; font-family: Arial, sans-serif; padding: 2px 6px; border-radius: 2px;
+      z-index: 20; font-weight: bold;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .wf-section { }
+  </style>
+</head>
+<body>
+
+  <div class="legend-bar">
+    <strong>Belle Salute – Wireframe Redesign (Opção Balanceada)</strong>
+    <span class="badge-reuse">[REUSE] Componente existente reaproveitado</span>
+    <span class="badge-new">[NEW] Novo componente proposto</span>
+    <span class="badge-fix">[FIX] Correção de bug/problema detectado</span>
+  </div>
+
+  <div class="wf-page">
+
+    <!-- ══════════════ NAVBAR ══════════════ -->
+    <!-- REUSE: Navbar from index.html (com correção de aria-expanded no hamburger) -->
+    <nav class="tagged" style="display:block;">
+      <span class="tag tag-reuse">[REUSE] Navbar + aria-expanded fix</span>
+      <div class="wf-nav">
+        <div class="wf-logo-area">
+          <div class="wf-logo-img">
+            [Logo<br>Circular]
+          </div>
+          <span class="wf-logo-text">Belle Salute</span>
+        </div>
+        <div class="wf-nav-links">
+          <span class="wf-nav-link">Sobre</span>
+          <span class="wf-nav-link">Serviços</span>
+          <span class="wf-nav-link">Diferenciais</span>
+          <span class="wf-nav-link">Depoimentos</span>
+          <span class="wf-nav-link">Contato</span>
+          <div class="wf-nav-cta">Agendar</div>
+        </div>
+      </div>
+      <!-- FIX: adicionar aria-expanded="false/true" ao botão hamburger mobile -->
+      <!-- FIX: mover estilo .nav-links a.active do JS para style.css -->
+      <!-- FIX: adicionar CSS para .navbar.scrolled (box-shadow, altura reduzida) -->
+    </nav>
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <!-- REUSE: #hero section – mantém estrutura, corrige reveal + stats absolutos -->
+    <section class="wf-hero tagged" style="display:block;">
+      <span class="tag tag-reuse">[REUSE] Hero Section</span>
+
+      <!-- Background image placeholder -->
+      <div class="wf-hero-img-placeholder">
+        [Imagem hero.png – 1440×560px – grayscale + overlay escuro]
+        <div class="fix-note">[FIX] Adicionar loading="lazy" + srcset WebP</div>
+      </div>
+
+      <div class="wf-hero-inner">
+        <span class="wf-eyebrow">Referência em Goiânia há + de 11 anos</span>
+        <h1 class="wf-h1">Realce sua beleza<br/><em>com precisão e elegância</em></h1>
+        <p class="wf-hero-desc">Estética Facial e Corporal Avançada — onde ciência e arte se encontram para revelar a melhor versão de você.</p>
+        <div class="wf-hero-btns">
+          <div class="wf-btn-primary">Agendar Consulta</div>
+          <div class="wf-btn-outline">Conheça os Serviços</div>
+        </div>
+      </div>
+
+      <!-- Stats bar – horizontal (sem overflow em mobile) -->
+      <!-- NEW: HeroStats component – posicionamento responsivo melhorado -->
+      <div class="wf-hero-stats tagged" style="position:absolute;bottom:0;left:0;right:0;">
+        <span class="tag tag-new">[NEW] HeroStats – layout responsivo</span>
+        <div class="wf-stat">
+          <span class="wf-stat-num">+11</span>
+          <span class="wf-stat-lbl">Anos de Excelência</span>
+        </div>
+        <div class="wf-stat">
+          <span class="wf-stat-num">+5mil</span>
+          <span class="wf-stat-lbl">Clientes Satisfeitas</span>
+        </div>
+        <div class="wf-stat">
+          <span class="wf-stat-num">+30</span>
+          <span class="wf-stat-lbl">Procedimentos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ SOBRE ══════════════ -->
+    <!-- REUSE: #sobre section -->
+    <section class="wf-sobre tagged" style="display:block;">
+      <span class="tag tag-reuse">[REUSE] Sobre Section</span>
+      <div class="wf-sobre-grid">
+        <div class="wf-sobre-img tagged" style="display:block;">
+          <span class="tag tag-fix">[FIX] Adicionar reveal CSS + loading=lazy</span>
+          [Imagem clinic.png – 600×420px]
+          <div class="wf-sobre-badge">
+            <span class="wf-badge-num">11+</span>
+            <span class="wf-badge-txt">Anos de<br/>Experiência</span>
+          </div>
+        </div>
+        <div class="wf-sobre-text" style="padding-top:16px;">
+          <span class="wf-section-tag">Sobre Nós</span>
+          <h2 class="wf-section-h2">Excelência em estética há mais de uma década</h2>
+          <p style="font-size:13px;color:#555;line-height:1.6;margin-bottom:12px;">A <strong>Belle Salute</strong> nasceu com uma missão: transformar vidas através da beleza com segurança, tecnologia e cuidado personalizado. Localizada na <strong>Av. T-1, Setor Bueno</strong>, em Goiânia.</p>
+          <ul class="wf-sobre-list">
+            <li>Profissionais certificados e especializados</li>
+            <li>Tecnologia de ponta em todos os procedimentos</li>
+            <li>Atendimento personalizado e humanizado</li>
+            <li>Ambiente exclusivo e aconchegante</li>
+          </ul>
+          <div class="wf-btn-primary" style="display:inline-flex;padding:14px 28px;">Agendar Avaliação Gratuita</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ SERVIÇOS – GRID CONSISTENTE ══════════════ -->
+    <!-- NEW: ServicoCard – todos os cards com imagem (consistência visual) -->
+    <section class="wf-servicos tagged" style="display:block;">
+      <span class="tag tag-new">[NEW] Serviços Grid – todos os cards com imagem</span>
+      <div style="text-align:center;margin-bottom:12px;">
+        <span class="wf-section-tag" style="margin:0 auto 10px;display:inline-block;border-left:none;border-bottom:3px solid #333;padding:0 0 4px;">O que Oferecemos</span>
+        <h2 class="wf-section-h2">Nossos Serviços</h2>
+        <p class="wf-section-sub">Procedimentos avançados para realçar sua beleza natural.</p>
+      </div>
+
+      <div class="wf-servicos-grid">
+
+        <!-- Card 1 – com imagem -->
+        <div class="wf-servico-card tagged">
+          <span class="tag tag-reuse">[REUSE] ServicoCard</span>
+          <div class="wf-card-img">[facial.png – 400×160px]</div>
+          <div class="wf-card-body">
+            <div class="wf-card-icon">◈</div>
+            <h3 class="wf-card-h3">Harmonização Facial</h3>
+            <p class="wf-card-p">Equilíbrio e proporção facial com técnicas minimamente invasivas.</p>
+            <span class="wf-card-link">Saiba mais →</span>
+          </div>
+        </div>
+
+        <!-- Card 2 – com imagem placeholder -->
+        <div class="wf-servico-card tagged">
+          <span class="tag tag-new">[NEW] Adicionar foto botox</span>
+          <div class="wf-card-img">[Foto botox – 400×160px]</div>
+          <div class="wf-card-body">
+            <div class="wf-card-icon">◈</div>
+            <h3 class="wf-card-h3">Botox & Toxina Botulínica</h3>
+            <p class="wf-card-p">Suavização de rugas com aplicação precisa e resultado rejuvenescedor.</p>
+            <span class="wf-card-link">Saiba mais →</span>
+          </div>
+        </div>
+
+        <!-- Card 3 – com imagem placeholder -->
+        <div class="wf-servico-card tagged">
+          <span class="tag tag-new">[NEW] Adicionar foto preenchimento</span>
+          <div class="wf-card-img">[Foto preenchimento – 400×160px]</div>
+          <div class="wf-card-body">
+            <div class="wf-card-icon">◈</div>
+            <h3 class="wf-card-h3">Preenchimento Labial</h3>
+            <p class="wf-card-p">Lábios mais definidos e volumosos com ácido hialurônico de alta qualidade.</p>
+            <span class="wf-card-link">Saiba mais →</span>
+          </div>
+        </div>
+
+        <!-- Card 4 – com imagem existente -->
+        <div class="wf-servico-card tagged">
+          <span class="tag tag-reuse">[REUSE] ServicoCard</span>
+          <div class="wf-card-img">[body.png – 400×160px]</div>
+          <div class="wf-card-body">
+            <div class="wf-card-icon">◈</div>
+            <h3 class="wf-card-h3">Lipo & Contorno Corporal</h3>
+            <p class="wf-card-p">Modelagem corporal avançada com tecnologias minimamente invasivas.</p>
+            <span class="wf-card-link">Saiba mais →</span>
+          </div>
+        </div>
+
+        <!-- Card 5 – com imagem placeholder -->
+        <div class="wf-servico-card tagged">
+          <span class="tag tag-new">[NEW] Adicionar foto glúteos</span>
+          <div class="wf-card-img">[Foto glúteos – 400×160px]</div>
+          <div class="wf-card-body">
+            <div class="wf-card-icon">◈</div>
+            <h3 class="wf-card-h3">Glúteos & Lifting</h3>
+            <p class="wf-card-p">Modelagem e definição dos glúteos com procedimentos modernos e seguros.</p>
+            <span class="wf-card-link">Saiba mais →</span>
+          </div>
+        </div>
+
+        <!-- Card 6 – com imagem placeholder -->
+        <div class="wf-servico-card tagged">
+          <span class="tag tag-new">[NEW] Adicionar foto skincare</span>
+          <div class="wf-card-img">[Foto skincare – 400×160px]</div>
+          <div class="wf-card-body">
+            <div class="wf-card-icon">◈</div>
+            <h3 class="wf-card-h3">Skincare Avançado</h3>
+            <p class="wf-card-p">Protocolos personalizados para revitalização e saúde da pele.</p>
+            <span class="wf-card-link">Saiba mais →</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="wf-servicos-more">
+        E muito mais: laser, bioestimuladores, fios de sustentação, drenagem linfática...
+        <div class="wf-btn-primary" style="display:inline-flex;padding:14px 28px;margin-top:16px;margin-left:16px;">Ver Todos os Serviços</div>
+      </div>
+    </section>
+
+    <!-- ══════════════ DIFERENCIAIS – h3 corrigido ══════════════ -->
+    <!-- REUSE: #diferenciais – FIX: h4 → h3 para hierarquia correta -->
+    <section class="wf-diferenciais tagged" style="display:block;">
+      <span class="tag tag-fix">[FIX] h4 → h3 (hierarquia de headings)</span>
+      <div style="text-align:center;margin-bottom:40px;">
+        <span class="wf-section-tag" style="margin:0 auto 10px;display:inline-block;border-left:none;border-bottom:3px solid #333;padding:0 0 4px;">Por que nos escolher</span>
+        <h2 class="wf-section-h2">Nossos Diferenciais</h2>
+      </div>
+      <div class="wf-dif-grid">
+        <div class="wf-dif-item"><div class="wf-dif-icon">⟡</div><h3 class="wf-dif-h3">Tecnologia de Última Geração</h3><p class="wf-dif-p">Equipamentos de ponta certificados para máxima eficácia e segurança.</p></div>
+        <div class="wf-dif-item"><div class="wf-dif-icon">⟡</div><h3 class="wf-dif-h3">Equipe Especializada</h3><p class="wf-dif-p">Profissionais com formação certificada e anos de prática clínica.</p></div>
+        <div class="wf-dif-item"><div class="wf-dif-icon">⟡</div><h3 class="wf-dif-h3">Avaliação Personalizada</h3><p class="wf-dif-p">Cada cliente recebe um plano exclusivo para suas necessidades.</p></div>
+        <div class="wf-dif-item"><div class="wf-dif-icon">⟡</div><h3 class="wf-dif-h3">Resultados Naturais</h3><p class="wf-dif-p">Filosofia que prioriza harmonia e naturalidade individual.</p></div>
+        <div class="wf-dif-item"><div class="wf-dif-icon">⟡</div><h3 class="wf-dif-h3">Segurança em 1º Lugar</h3><p class="wf-dif-p">Protocolos rigorosos e produtos com registro sanitário.</p></div>
+        <div class="wf-dif-item"><div class="wf-dif-icon">⟡</div><h3 class="wf-dif-h3">Acompanhamento Pós</h3><p class="wf-dif-p">Suporte completo após cada procedimento.</p></div>
+      </div>
+    </section>
+
+    <!-- ══════════════ DEPOIMENTOS ══════════════ -->
+    <!-- REUSE: #depoimentos -->
+    <section class="wf-depoimentos tagged" style="display:block;">
+      <span class="tag tag-reuse">[REUSE] Depoimentos Grid</span>
+      <div style="text-align:center;margin-bottom:40px;">
+        <span class="wf-section-tag" style="margin:0 auto 10px;display:inline-block;border-left:none;border-bottom:3px solid #333;padding:0 0 4px;">Resultados Reais</span>
+        <h2 class="wf-section-h2">O que nossas clientes dizem</h2>
+      </div>
+      <div class="wf-dep-grid">
+        <div class="wf-dep-card">
+          <div class="wf-stars">★★★★★</div>
+          <p class="wf-dep-quote">"A harmonização facial que fiz transformou minha autoestima. O resultado ficou natural e todos notam que estou mais bonita!"</p>
+          <div class="wf-dep-author">
+            <div class="wf-dep-avatar">A</div>
+            <div><span class="wf-dep-name">Amanda R.</span><span class="wf-dep-service">Harmonização Facial</span></div>
+          </div>
+        </div>
+        <div class="wf-dep-card featured">
+          <div class="wf-stars">★★★★★</div>
+          <p class="wf-dep-quote">"Faz 3 anos que sou cliente e não troco por nada! O profissionalismo e os resultados me fazem voltar sempre."</p>
+          <div class="wf-dep-author">
+            <div class="wf-dep-avatar">C</div>
+            <div><span class="wf-dep-name">Carolina M.</span><span class="wf-dep-service">Cliente há 3 anos</span></div>
+          </div>
+        </div>
+        <div class="wf-dep-card">
+          <div class="wf-stars">★★★★★</div>
+          <p class="wf-dep-quote">"O botox ficou perfeito! Suavizou minhas linhas sem perder a naturalidade. A profissional tirou todas as minhas dúvidas."</p>
+          <div class="wf-dep-author">
+            <div class="wf-dep-avatar">P</div>
+            <div><span class="wf-dep-name">Patrícia S.</span><span class="wf-dep-service">Botox & Rejuvenescimento</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONTATO – FORMULÁRIO ACESSÍVEL ══════════════ -->
+    <!-- NEW: ContactForm – com <label> visíveis, campo mensagem adicionado, select com label -->
+    <section class="wf-contato tagged" style="display:block;">
+      <span class="tag tag-new">[NEW] ContactForm acessível – labels, campo mensagem, select com aria-label</span>
+      <div class="wf-contato-grid">
+        <div class="wf-contato-info">
+          <span class="wf-section-tag">Fale Conosco</span>
+          <h2 class="wf-section-h2">Entre em Contato</h2>
+          <p>Agende sua consulta ou tire suas dúvidas. Estamos prontas para atendê-la!</p>
+          <div class="wf-info-list">
+            <div class="wf-info-item">
+              <span class="wf-info-icon">📍</span>
+              <div><strong>Endereço</strong><span>Av. T-1, Setor Bueno – Goiânia, GO</span></div>
+            </div>
+            <div class="wf-info-item">
+              <span class="wf-info-icon">📞</span>
+              <div><strong>WhatsApp</strong><span>(62) 9 9999-9999</span></div>
+            </div>
+            <div class="wf-info-item">
+              <span class="wf-info-icon">🕐</span>
+              <div><strong>Horário</strong><span>Seg – Sex: 8h às 19h | Sáb: 8h às 14h</span></div>
+            </div>
+          </div>
+          <!-- FIX: btn-whatsapp precisa de cor de texto escura para contraste adequado -->
+          <div class="wf-btn-wa tagged" style="position:relative;display:inline-flex;">
+            <span class="tag tag-fix" style="top:-10px;right:-10px;">[FIX] Contraste btn-whatsapp</span>
+            📱 Chamar no WhatsApp
+          </div>
+        </div>
+
+        <div class="wf-form tagged" style="position:relative;">
+          <span class="tag tag-new">[NEW] Form acessível com labels visíveis</span>
+          <h3>Agende sua Avaliação</h3>
+
+          <!-- FIX: remover form.mensagem bug + adicionar campo mensagem ao HTML -->
+          <div class="wf-form-group">
+            <label class="wf-label" for="wf-nome">Nome Completo <span class="req">*</span></label>
+            <input class="wf-input" id="wf-nome" type="text" placeholder="Seu nome completo" />
+          </div>
+
+          <div class="wf-form-group">
+            <label class="wf-label" for="wf-tel">WhatsApp <span class="req">*</span></label>
+            <input class="wf-input" id="wf-tel" type="tel" placeholder="(62) 9 9999-9999" />
+          </div>
+
+          <div class="wf-form-group">
+            <!-- FIX: adicionar <label> ao select (violação crítica WCAG) -->
+            <label class="wf-label" for="wf-servico">Serviço de Interesse <span class="req">*</span></label>
+            <select class="wf-select" id="wf-servico">
+              <option value="">Selecione um serviço</option>
+              <option>Harmonização Facial</option>
+              <option>Botox</option>
+              <option>Lipo</option>
+              <option>Outro Serviço</option>
+            </select>
+          </div>
+
+          <div class="wf-form-group">
+            <!-- NEW: campo mensagem (resolve bug form.mensagem no script.js:133) -->
+            <label class="wf-label" for="wf-msg">Mensagem (opcional)</label>
+            <textarea class="wf-textarea" id="wf-msg" placeholder="Descreva sua necessidade ou dúvida..."></textarea>
+          </div>
+
+          <button class="wf-btn-submit">Enviar Solicitação</button>
+          <p class="wf-form-note">Você será redirecionada para o WhatsApp após o envio.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FOOTER – EXPANDIDO ══════════════ -->
+    <!-- NEW: Footer expandido com colunas de links -->
+    <footer class="wf-footer tagged" style="display:block;">
+      <span class="tag tag-new">[NEW] Footer expandido</span>
+      <div class="wf-footer-top">
+        <div class="wf-footer-brand">
+          <div class="wf-logo-img" style="width:60px;height:60px;">[Logo]</div>
+          <p style="margin-top:12px;">Estética Facial e Corporal Avançada<br/>Goiânia – Setor Bueno</p>
+          <!-- FIX: copyright color (#784b96) → texto mais claro para contraste -->
+          <p style="font-size:11px;color:#999;margin-top:8px;">[FIX: cor copyright para maior contraste]</p>
+        </div>
+        <div class="wf-footer-col">
+          <h4>Serviços</h4>
+          <ul>
+            <li>Harmonização Facial</li>
+            <li>Botox</li>
+            <li>Preenchimento Labial</li>
+            <li>Lipo Corporal</li>
+            <li>Skincare</li>
+          </ul>
+        </div>
+        <div class="wf-footer-col">
+          <h4>Informações</h4>
+          <ul>
+            <li>Sobre Nós</li>
+            <li>Diferenciais</li>
+            <li>Depoimentos</li>
+            <li>Blog</li>
+          </ul>
+        </div>
+        <div class="wf-footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li>Av. T-1, Setor Bueno</li>
+            <li>Goiânia, GO</li>
+            <li>(62) 9 9999-9999</li>
+            <li>Seg–Sex: 8h–19h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="wf-footer-bottom">
+        <p>© 2025 Belle Salute Estética. Todos os direitos reservados.</p>
+        <div class="wf-social">
+          <div class="wf-social-icon">IG</div>
+          <div class="wf-social-icon">FB</div>
+          <div class="wf-social-icon">WA</div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /.wf-page -->
+
+  <!-- WA Float -->
+  <div class="wf-wa-float">📱</div>
+
+  <!-- ══════════════ SUMÁRIO DE CORREÇÕES ══════════════ -->
+  <div style="background:#fffbe6;border-top:3px solid #f0c000;padding:32px 48px;font-family:Arial,sans-serif;max-width:1200px;margin:0 auto;">
+    <h2 style="font-size:16px;margin-bottom:16px;">📋 Sumário de Mudanças Propostas neste Wireframe</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead>
+        <tr style="background:#f5e68a;">
+          <th style="padding:8px 12px;text-align:left;border:1px solid #ccc;">Mudança</th>
+          <th style="padding:8px 12px;text-align:left;border:1px solid #ccc;">Problema Resolvido</th>
+          <th style="padding:8px 12px;text-align:left;border:1px solid #ccc;">Seção</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:8px 12px;border:1px solid #ccc;">Adicionar CSS das animações reveal</td><td style="padding:8px 12px;border:1px solid #ccc;">Bug #1 – Conteúdo invisível</td><td style="padding:8px 12px;border:1px solid #ccc;">style.css</td></tr>
+        <tr style="background:#fafafa;"><td style="padding:8px 12px;border:1px solid #ccc;">Adicionar campo &lt;textarea name="mensagem"&gt;</td><td style="padding:8px 12px;border:1px solid #ccc;">Bug #2 – TypeError JS</td><td style="padding:8px 12px;border:1px solid #ccc;">Formulário</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid #ccc;">Adicionar &lt;label&gt; ao &lt;select&gt;</td><td style="padding:8px 12px;border:1px solid #ccc;">Bug #3 – WCAG 4.1.2 crítico</td><td style="padding:8px 12px;border:1px solid #ccc;">Formulário</td></tr>
+        <tr style="background:#fafafa;"><td style="padding:8px 12px;border:1px solid #ccc;">Padronizar todos os cards com imagem</td><td style="padding:8px 12px;border:1px solid #ccc;">Inconsistência visual</td><td style="padding:8px 12px;border:1px solid #ccc;">Serviços</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid #ccc;">h4 → h3 na seção Diferenciais</td><td style="padding:8px 12px;border:1px solid #ccc;">Hierarquia de headings</td><td style="padding:8px 12px;border:1px solid #ccc;">Diferenciais</td></tr>
+        <tr style="background:#fafafa;"><td style="padding:8px 12px;border:1px solid #ccc;">Adicionar &lt;label&gt; a todos os campos do form</td><td style="padding:8px 12px;border:1px solid #ccc;">Acessibilidade</td><td style="padding:8px 12px;border:1px solid #ccc;">Contato</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid #ccc;">Footer expandido com 4 colunas</td><td style="padding:8px 12px;border:1px solid #ccc;">UX – navegação secundária</td><td style="padding:8px 12px;border:1px solid #ccc;">Footer</td></tr>
+        <tr style="background:#fafafa;"><td style="padding:8px 12px;border:1px solid #ccc;">CSS .navbar.scrolled e .scroll-down</td><td style="padding:8px 12px;border:1px solid #ccc;">Micro-interações ausentes</td><td style="padding:8px 12px;border:1px solid #ccc;">Navbar</td></tr>
+        <tr><td style="padding:8px 12px;border:1px solid #ccc;">Envolve conteúdo em &lt;main&gt;</td><td style="padding:8px 12px;border:1px solid #ccc;">Landmark WCAG</td><td style="padding:8px 12px;border:1px solid #ccc;">index.html global</td></tr>
+        <tr style="background:#fafafa;"><td style="padding:8px 12px;border:1px solid #ccc;">Corrigir contraste section-tag, servico-link, footer, btn-whatsapp</td><td style="padding:8px 12px;border:1px solid #ccc;">13 violações WCAG AA</td><td style="padding:8px 12px;border:1px solid #ccc;">style.css</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

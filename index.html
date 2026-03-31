@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belle Salute – Alta Estética</title>
+  <meta name="description" content="A essência da beleza. Clínica de Estética e Harmonização na Av. T-1, Setor Bueno, Goiânia." />
+  <link rel="icon" href="images/logo-nb.jpg" type="image/jpeg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="#hero" class="nav-logo" aria-label="Voltar para o Início">
+        <img src="images/logo-nb.jpg" alt="Logo Belle Salute" class="nav-logo-img" loading="lazy" />
+      </a>
+      
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir Menu">
+        <span></span><span></span><span></span>
+      </button>
+      
+      <nav class="nav-links" id="navLinks">
+        <a href="#sobre" class="nav-item">Ateliê Clínico</a>
+        <a href="#servicos" class="nav-item">Protocolos</a>
+        <a href="#depoimentos" class="nav-item">Essência</a>
+        <a href="#contato" class="btn btn-primary" style="padding: 0.8rem 1.6rem; margin-left:14px">Agendar Avaliação</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION (SOFT LUXURY) -->
+    <section id="hero" class="hero section">
+      <div class="container grid grid-cols-2 items-center">
+        <div class="hero-content fade-up">
+          <span class="heading-eyebrow">Clínica de Alto Padrão</span>
+          <h1 class="heading-1">Arquitetura da<br><em>beleza</em> singular</h1>
+          <p class="text-body-lg" style="max-width:480px">Não fabricamos padrões. Rejuvenescimento e contornos orgânicos em uma atmosfera de extremo luxo no coração da Av. T-1, Setor Bueno.</p>
+          
+          <div class="hero-actions">
+            <a href="#contato" class="btn btn-primary">Reservar Visita</a>
+            <a href="#servicos" class="btn btn-ghost">Ver Menu Cirúrgico</a>
+          </div>
+        </div>
+        
+        <div class="hero-image fade-up" style="transition-delay:0.2s">
+          <div class="hero-image-wrap">
+            <!-- Trocado o Vídeo Hotlink que corrompe pelo Efeito Cinematográfico Panorâmico via CSS -->
+            <img src="images/hero.png" alt="Rosto Feminino Suave Belle Salute" class="hero-cinematic" fetchpriority="high" />
+            <div class="hero-badge">
+              <div class="hero-badge-icon">11</div>
+              <div>
+                <span style="font-size:12px;font-weight:600;display:block;text-transform:uppercase;color:var(--clr-text)">Anos de Padrão</span>
+                <span class="text-muted" style="font-size:11px">Na Alta Estética Goiana</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="sobre" class="section section-alt">
+      <div class="container grid grid-cols-2 items-center">
+        <div class="about-image fade-up">
+          <img src="images/clinic.png" alt="Interior T-1 Setor Bueno" loading="lazy" style="width:100%;height:100%;object-fit:cover" />
+        </div>
+        
+        <div class="about-content fade-up" style="transition-delay: 0.1s; padding-left: 2rem;">
+          <span class="heading-eyebrow">O Espaço Belle Salute</span>
+          <h2 class="heading-2">Luxo, discrição e acolhimento clínico.</h2>
+          <p class="text-body-lg">Redefinimos a experiência médica. Esqueça clínicas frias ou painéis eletrônicos invasivos. Nosso espaço foi construído como um refúgio de paz.</p>
+          <p class="text-body-lg">Trabalhamos exclusivamente com marcas globais ultra-seguras (Restylane, Juvederm). Injetáveis purificados e protocolos validados pelas melhores agências de vigilância do mundo.</p>
+          
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="value">5k+</span>
+              <span class="label">Procedimentos</span>
+            </div>
+            <div class="stat-item" style="border-left: 1px solid var(--clr-border); padding-left:24px;">
+              <span class="value">0.1%</span>
+              <span class="label">Taxa de Revés</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION (FLOATING CARDS) -->
+    <section id="servicos" class="section">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="heading-eyebrow">A Arte da Lapidação</span>
+          <h2 class="heading-2">Protocolos Premium</h2>
+          <p class="text-body">Abaixo, nosso menu visual focado na otimização natural do seu conforto e reflexo.</p>
+        </div>
+        
+        <div class="grid grid-cols-3 fade-up">
+          
+          <article class="service-card">
+            <div class="service-img">
+              <img src="images/facial.png" alt="Harmonização Facial" loading="lazy" class="parallax-img" />
+            </div>
+            <div class="service-content">
+              <h3 class="heading-3" style="font-size: 1.6rem;">Análise Facial MD</h3>
+              <p class="service-desc text-body">Restauramos as sombras originais da jovialidade facial, respeitando pontos de luz e preenchendo apenas as perdas estruturais etárias com Ácido Hialurônico importado.</p>
+              <a href="#contato" class="btn btn-ghost highlight">Consulta Direcionada</a>
+            </div>
+          </article>
+
+          <article class="service-card" style="transition-delay:0.1s">
+            <div class="service-img">
+              <img src="images/toxina.png" alt="Toxina Botulínica Preventiva" loading="lazy" class="parallax-img" />
+            </div>
+            <div class="service-content">
+              <h3 class="heading-3" style="font-size: 1.6rem;">Preventivo Toxina</h3>
+              <p class="service-desc text-body">Técnica fracionada Francesa. Relaxamento pontual e milimétrico da testa para congelar as rugas, sem jamais engessar a emoção do seu olhar.</p>
+              <a href="#contato" class="btn btn-ghost highlight">Consulta Direcionada</a>
+            </div>
+          </article>
+
+          <article class="service-card" style="transition-delay:0.2s">
+            <div class="service-img">
+              <img src="images/body.png" alt="Lipo e Contorno" loading="lazy" class="parallax-img" />
+            </div>
+            <div class="service-content">
+              <h3 class="heading-3" style="font-size: 1.6rem;">Contorno Glúteo</h3>
+              <p class="service-desc text-body">A união do laser transdérmico com bioestimuladores de colágeno (Sculptra) entregam uma firmeza atlética de forma 100% harmonizada e sem cirurgia letal.</p>
+              <a href="#contato" class="btn btn-ghost highlight">Consulta Direcionada</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION (SOFT PEARL) -->
+    <section id="depoimentos" class="section section-alt">
+      <div class="container fade-up">
+        <span class="heading-eyebrow text-center" style="display:block;margin-bottom:var(--sp-8)">Endossos de Pacientes</span>
+        
+        <div class="flex flex-col items-center">
+          <svg viewBox="0 0 24 24" style="width:40px;height:40px;color:var(--clr-primary-light);margin-bottom:20px"><path fill="currentColor" d="M14 11h4.5a3.5 3.5 0 0 1-3.5 3.5H14v2h1.5A5.5 5.5 0 0 0 21 11V6h-7v5Zm-9 0h4.5A3.5 3.5 0 0 1 6.5 14.5H5v2h1.5A5.5 5.5 0 0 0 12 11V6H5v5Z"></path></svg>
+          <p class="testimonial-quote text-center" style="max-width:800px">"A primeira clínica que se recusou a exagerar na minha face. Eles focam num polimento chique, me deixaram parecendo 10 anos mais descansada sem ninguém notar o quê fiz."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">C</div>
+            <div>
+              <strong style="display:block;font-size:var(--text-md);color:var(--clr-text)">Camilo Resende</strong>
+              <span class="text-xs" style="color:var(--clr-text-muted)">Goiânia, Setor Marista</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION (Acordeões) -->
+    <section id="faq" class="section">
+      <div class="container fade-up">
+        <span class="heading-eyebrow text-center" style="display:block;margin-bottom:var(--sp-2)">Nós Cuidamos de Você</span>
+        <h2 class="heading-2 text-center" style="margin-bottom:var(--sp-12)">Dúvidas Frequentes</h2>
+        
+        <div class="faq-wrap">
+          <div class="faq-item">
+            <button class="faq-question">
+              Como funciona a segurança dos Injetáveis?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Trabalhamos exclusivamente com preenchedores e bioestimuladores importados de marcas premium validadas pela ANVISA (como Restylane e Juvederm). O lote nunca é reaproveitado e a seringa é aberta na sua presença.
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              Qual é o tempo de recuperação (Down-time)?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Para 90% dos nossos protocolos, a recuperação é imediata. A Toxina Preventiva não deixa marcas perceptíveis e o Ácido Hialurônico possui um inchaço levíssimo controlado pela nossa concierge 24h.
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              A harmonização facial não vai deformar meu aspeto natural?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Esse é o exato pilar da Belle Salute. Em nossa triagem (MD Codes), focamos na Estrutura Original. Só devolvemos o que a face perdeu devido à queda tecidual e envelhecimento natural, nunca moldaremos algo que não pertence à sua própria essência.
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION (FORM) -->
+    <section id="contato" class="section">
+      <div class="container contact-grid fade-up">
+        
+        <div class="contact-info">
+          <span class="heading-eyebrow">Agende Seu Momento</span>
+          <h2 class="heading-2">O seu reflexo merece o mais alto grau de excelência.</h2>
+          <p class="text-body-lg">Entendemos que beleza íntima exige paz e precisão médica. Preencha seus dados para que nossa Concierge prepare sua ficha de recepção.</p>
+          
+          <div style="margin-top:var(--sp-8); display:flex; gap:var(--sp-4)">
+            <a href="https://wa.me/5562999999999" target="_blank" class="btn btn-outline" style="border-radius:var(--radius-pill)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/></svg>
+            </a>
+            <div style="display:flex;flex-direction:column;justify-content:center">
+              <span style="font-size:12px;font-weight:600;text-transform:uppercase;color:var(--clr-text-muted)">Sede Goiânia</span>
+              <strong style="color:var(--clr-text);font-size:16px">Av. T-1, Setor Bueno</strong>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form-box">
+          <form id="formContato">
+            <div class="form-group">
+              <label class="form-label" for="nome">Como devemos lhe chamar?</label>
+              <input type="text" id="nome" name="nome" class="form-input" placeholder="Seu nome" required />
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="telefone">WhatsApp Privado</label>
+              <input type="tel" id="telefone" name="telefone" class="form-input" placeholder="(62) 9 xxxx-xxxx" required />
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="servico">Dossiê de Interesse Clínico</label>
+              <select id="servico" name="servico" class="form-select" required>
+                <option value="">Selecione a curadoria</option>
+                <option>Estruturação Facial</option>
+                <option>Toxina Inibitória Preventiva</option>
+                <option>Arquitetura Labial</option>
+                <option>Contorno Corporal sem cirurgia</option>
+                <option>Apenas uma Avaliação Master</option>
+              </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:var(--sp-2)">
+              Solicitar Triagem (Via WhatsApp)
+            </button>
+          </form>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- INSTAGRAM LIVE FEED (Ateliê ao Vivo) -->
+    <section id="instagram" class="section-sm">
+      <div class="container fade-up text-center">
+        <span class="heading-eyebrow">Acompanhe Diariamente</span>
+        <h2 class="heading-3">O Ateliê Ao Vivo</h2>
+        <a href="https://instagram.com/bellesalute" target="_blank" class="btn btn-ghost highlight" style="margin-top:var(--sp-2)">@bellesalute</a>
+      </div>
+      
+      <div class="insta-grid fade-up">
+        <a href="https://instagram.com/bellesalute" target="_blank" class="insta-card">
+          <img src="images/hero.png" alt="Sessão Clínica" class="insta-img" loading="lazy">
+          <div class="insta-overlay">
+            <span class="insta-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 214</span>
+          </div>
+        </a>
+        <a href="https://instagram.com/bellesalute" target="_blank" class="insta-card">
+          <img src="images/facial.png" alt="Procedimento Belle Salute" class="insta-img" loading="lazy">
+          <div class="insta-overlay">
+            <span class="insta-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 562</span>
+          </div>
+        </a>
+        <a href="https://instagram.com/bellesalute" target="_blank" class="insta-card">
+          <img src="images/toxina.png" alt="Produtos Importados" class="insta-img" loading="lazy">
+          <div class="insta-overlay">
+            <span class="insta-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 120</span>
+          </div>
+        </a>
+        <a href="https://instagram.com/bellesalute" target="_blank" class="insta-card">
+          <img src="images/clinic.png" alt="Drenagem e Relaxamento" class="insta-img" loading="lazy">
+          <div class="insta-overlay">
+            <span class="insta-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> 389</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container fade-up">
+      <div class="footer-grid">
+        
+        <div class="footer-col">
+          <div class="nav-logo" style="margin-bottom:var(--sp-4)">
+            <img src="images/logo-nb.jpg" alt="Logo" class="nav-logo-img" style="filter:grayscale(60%); opacity:0.8" loading="lazy" />
+          </div>
+          <p class="text-body" style="max-width:280px; font-size:var(--text-sm)">A medicina estética tratada como o que deveria ser em sua plenitude: Uma ciência artística letalmente detalhista em busca do conforto feminino.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Prontuário Útil</h4>
+          <nav class="footer-links">
+            <a href="#">Autorização Autônoma</a>
+            <a href="#">Consentimento Clínico</a>
+            <a href="#">Ata de Privacidade Total</a>
+          </nav>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Beleza Global</h4>
+          <nav class="footer-links">
+            <a href="#sobre">Nossa Essência</a>
+            <a href="#servicos">Tratamentos</a>
+            <a href="#">Contato Sede</a>
+          </nav>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Social Media</h4>
+          <p class="text-body" style="font-size:var(--text-sm); margin-bottom:8px">Conecte-se e inspire-se nos resultados discretos.</p>
+          <div class="social-flex">
+            <a href="#" class="social-icon" aria-label="Instagram">IG</a>
+            <a href="#" class="social-icon" aria-label="WhatsApp">WA</a>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2025 Belle Salute Clínica Exclusiva.</span>
+        <span class="footer-copy" style="color: var(--clr-primary-light);">Soft Luxury High-End Theme</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
