@@ -293,7 +293,9 @@ button { background: none; border: none; cursor: pointer; }
 }
 
 @media (max-width: 768px) {
-  .nav-links { display: none; }
+  .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); flex-direction: column; padding: var(--sp-4) 0; box-shadow: var(--shadow-sm); border-bottom: 1px solid var(--clr-border); }
+  .nav-links.open { display: flex; }
+  .nav-links .btn { margin-left: 0 !important; width: 90%; margin-top: var(--sp-2); }
   .hamburger { display: block; }
   .grid-cols-3 { grid-template-columns: 1fr; }
   .feature-grid { grid-template-columns: 1fr; }
